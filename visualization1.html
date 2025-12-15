@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualization 1 – Air Quality Index</title>
+
+    <!-- the font that we used from google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- bootstrap CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    >
+
+    <style>
+        body {
+            background-color: #f5f2eb;
+            font-family: 'Poppins', sans-serif;
+            color: #3e3a36;
+        }
+
+        /* the navbar */
+        .navbar {
+            background-color: #c2b280 !important;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: #fff !important;
+            letter-spacing: 0.3px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+
+        /* plotly iframe */
+        iframe {
+            border-radius: 15px;
+            min-height: 650px;
+            width: 100%;
+            border: none;
+        }
+
+        /* the narrative section */
+        .viz-notes {
+            background-color: #e8e3d7;
+            border-radius: 18px;
+            padding: 2rem;
+        }
+
+        .viz-notes h5 {
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.75rem;
+        }
+
+        .viz-notes ul {
+            padding-left: 1.2rem;
+        }
+
+        .viz-notes li {
+            margin-bottom: 0.4rem;
+        }
+
+        .viz-divider {
+            border-top: 1px solid #d2ccbd;
+            margin: 1.5rem 0;
+        }
+
+        .figure-label {
+            font-size: 0.9rem;
+            color: #7a746c;
+        }
+
+        a {
+            color: #6b7b5d;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: #55644b;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- the navbar 2 -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <img src="images/Logo.png" class="mr-2" style="width:50px;height:auto;" alt="Logo">
+
+    <a class="navbar-brand" href="index.html">
+        Environmental Visualizations
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbar-body" aria-controls="navbar-body"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-body">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="research.html">Research</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- content written inside the page -->
+<div class="container my-5">
+
+    <h1 class="text-center mb-4">
+        Air Quality Index Across the United States
+    </h1>
+
+    <p class="text-center mb-4">
+        This interactive map shows the Air Quality Index (AQI) by U.S. state.
+        Hover over each state to explore regional differences.
+    </p>
+
+    <p class="text-center figure-label mb-3">
+        Figure 1. Air Quality Index by U.S. State
+    </p>
+
+    <!-- embedded plotly -->
+    <div class="embed-responsive embed-responsive-16by9 mb-5">
+        <iframe
+            class="embed-responsive-item"
+            src="map-viz-embed-div.html"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- the narriative section -->
+    <div class="viz-notes">
+
+        <h5>Our Insights</h5>
+        <ul>
+           <li>Air quality shows clear regional patterns across the United States, with some regions consistently experiencing higher AQI levels than others.</li>
+           <li>Differences in AQI between neighboring states suggest that factors beyond geography alone, such as population density or local emission sources, influence air quality.</li>
+           <li>Industrial activity, traffic volume, environmental conditions, and regulatory practices likely play a significant role in the observed variation in AQI values.</li>
+        </ul>
+
+        <div class="viz-divider"></div>
+
+        <h5>Data Source</h5>
+        <p>
+            <a href="https://worldpopulationreview.com/state-rankings/air-quality-by-state" target="_blank">
+                Air Quality by State — World Population Review
+            </a>
+        </p>
+
+        <div class="viz-divider"></div>
+
+        <h5>Discussion</h5>
+        <p>
+            The analysis used a state-level Air Quality Index (AQI) dataset for 2025 as the primary data source. This dataset contained information on average air quality conditions across the United States, with the key columns being the state name and the corresponding average AQI value. These AQI values summarize overall air pollution levels within each state and allow for direct comparison of air quality across different regions.
+            To display the AQI data spatially, a U.S. state geographic boundary dataset was also used. This dataset provides the outlines of each state and includes a state identifier that allowed the AQI values to be accurately joined to their respective state locations. Combining the AQI dataset with the geographic data enabled the creation of a state-level visualization that reflects both numerical and spatial differences in air quality.
+            Using these combined data sources, a choropleth map of the United States was created. In this visualization, each state is shaded according to its average AQI value, with color intensity representing the relative level of air pollution. This type of visualization is effective because it highlights regional patterns, makes differences between neighboring states easy to observe, and provides an intuitive overview of how air quality varies across the country.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
